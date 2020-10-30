@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package pkg.user.proto;
+
+import "validate/validate.proto";
+
+option go_package = "github.com/bibaroc/dyslav/pkg/user/proto";
+
+service UserService {
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+}
+
+message CreateUserRequest {
+    string email = 1 [(validate.rules).string.email = true];
+    string username = 2 [(validate.rules).string.min_len = 5];
+    string password = 3 [(validate.rules).string.min_len = 8];
+    string password_confirmation = 4 [(validate.rules).string.min_len = 8];
+}
+
+message CreateUserResponse {
+    uint64 id = 1;
+    string err = 2;
+}
