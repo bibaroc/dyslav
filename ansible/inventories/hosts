@@ -1,0 +1,18 @@
+[nginx]
+35.211.152.96 ansible_user=runner disable_google_services=1
+
+[prometheus]
+35.211.152.96 ansible_user=runner
+
+[node]
+130.61.56.58 ansible_user=ubuntu
+35.211.152.96 ansible_user=runner
+
+[grafana]
+35.211.152.96 ansible_user=runner
+
+[cluster:children]
+nginx
+prometheus
+grafana
+node

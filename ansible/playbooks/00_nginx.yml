@@ -1,0 +1,53 @@
+---
+- name: Install nginx
+  hosts: nginx
+  pre_tasks:
+  - name: "nginx: set repo if Alpine"
+    set_fact:
+      version: "=1.19.1-r1"
+    when: ansible_facts['os_family'] == "Alpine"
+  - name: "nginx: set repo if Debian"
+    set_fact:
+      version: "=1.19.1-1~{{ ansible_facts['distribution_release'] }}"
+    when: ansible_facts['os_family'] == "Debian"
+  - name: "nginx: set repo if Red Hat"
+    set_fact:
+      version: "-1.19.1-1.el{{ ansible_facts['distribution_major_version'] }}.ngx"
+    when: ansible_facts['os_family'] == "RedHat"
+  - name: "nginx: enable NGINX @CentOS-AppStream dnf modules"
+    shell:
+    args:
+      cmd: dnf module info nginx | grep -q 'Stream.*\[e\]' && echo -n ENABLED || dnf module enable -y nginx  # noqa 204 303
+    register: dnf_module_enable
+    changed_when: dnf_module_enable.stdout != 'ENABLED'
+    when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] is version('8', '==')
+  roles:
+  - name: nginxinc.nginx
+    vars:
+      nginx_selinux: true
+      nginx_selinux_tcp_ports:
+        - 80
+        - 443
+      nginx_version: "{{ version }}"
+      nginx_logrotate_conf_enable: true
+      nginx_logrotate_conf:
+        paths:
+          - /var/log/nginx/*.log
+        options:
+          - daily
+          - missingok
+          - rotate 14
+          - compress
+          - delaycompress
+          - notifempty
+          - sharedscripts
+  become: true
+
+- name: Apply security restrictions
+  hosts: nginx
+  become: true
+  roles:
+  - name: dev-sec.nginx-hardening
+    vars:
+      nginx_ssl_protocols: TLSv1.3
+      nginx_ssl_prefer_server_ciphers: off
