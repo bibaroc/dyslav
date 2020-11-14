@@ -252,3 +252,273 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = CreateUserResponseValidationError{}
+
+// Validate checks the field values on LivenessRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *LivenessRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// LivenessRequestValidationError is the validation error returned by
+// LivenessRequest.Validate if the designated constraints aren't met.
+type LivenessRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e LivenessRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e LivenessRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e LivenessRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e LivenessRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e LivenessRequestValidationError) ErrorName() string { return "LivenessRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e LivenessRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sLivenessRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = LivenessRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = LivenessRequestValidationError{}
+
+// Validate checks the field values on LivenessResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *LivenessResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Status
+
+	// no validation rules for Version
+
+	// no validation rules for Commit
+
+	return nil
+}
+
+// LivenessResponseValidationError is the validation error returned by
+// LivenessResponse.Validate if the designated constraints aren't met.
+type LivenessResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e LivenessResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e LivenessResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e LivenessResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e LivenessResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e LivenessResponseValidationError) ErrorName() string { return "LivenessResponseValidationError" }
+
+// Error satisfies the builtin error interface
+func (e LivenessResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sLivenessResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = LivenessResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = LivenessResponseValidationError{}
+
+// Validate checks the field values on ReadinessRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReadinessRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// ReadinessRequestValidationError is the validation error returned by
+// ReadinessRequest.Validate if the designated constraints aren't met.
+type ReadinessRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadinessRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadinessRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadinessRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadinessRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadinessRequestValidationError) ErrorName() string { return "ReadinessRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ReadinessRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadinessRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadinessRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadinessRequestValidationError{}
+
+// Validate checks the field values on ReadinessResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReadinessResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Status
+
+	return nil
+}
+
+// ReadinessResponseValidationError is the validation error returned by
+// ReadinessResponse.Validate if the designated constraints aren't met.
+type ReadinessResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadinessResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadinessResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadinessResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadinessResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadinessResponseValidationError) ErrorName() string {
+	return "ReadinessResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadinessResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadinessResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadinessResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadinessResponseValidationError{}

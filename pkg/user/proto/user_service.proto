@@ -8,6 +8,13 @@ option go_package = "github.com/bibaroc/dyslav/pkg/user/proto";
 
 service UserService {
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+    rpc Liveness (LivenessRequest) returns (LivenessResponse);
+    rpc Readiness (ReadinessRequest) returns (ReadinessResponse);
+}
+
+enum Status {
+    UP = 0;
+    DOWN = 1;
 }
 
 message CreateUserRequest {
@@ -16,8 +23,21 @@ message CreateUserRequest {
     string password = 3 [(validate.rules).string.min_len = 8];
     string password_confirmation = 4 [(validate.rules).string.min_len = 8];
 }
-
 message CreateUserResponse {
     uint64 id = 1;
     string err = 2;
+}
+
+
+
+message LivenessRequest{}
+message LivenessResponse{
+    Status status = 1;
+    string version = 2; 
+    string commit = 3;
+}
+
+message ReadinessRequest{}
+message ReadinessResponse{
+    Status status = 1;
 }

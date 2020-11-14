@@ -1,2 +1,4 @@
 bin/*
 vault_password
+monolith
+!cmd/*

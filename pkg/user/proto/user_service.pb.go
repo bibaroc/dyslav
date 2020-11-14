@@ -30,6 +30,52 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+type Status int32
+
+const (
+	Status_UP   Status = 0
+	Status_DOWN Status = 1
+)
+
+// Enum value maps for Status.
+var (
+	Status_name = map[int32]string{
+		0: "UP",
+		1: "DOWN",
+	}
+	Status_value = map[string]int32{
+		"UP":   0,
+		"DOWN": 1,
+	}
+)
+
+func (x Status) Enum() *Status {
+	p := new(Status)
+	*p = x
+	return p
+}
+
+func (x Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_pkg_user_proto_user_service_proto_enumTypes[0].Descriptor()
+}
+
+func (Status) Type() protoreflect.EnumType {
+	return &file_pkg_user_proto_user_service_proto_enumTypes[0]
+}
+
+func (x Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Status.Descriptor instead.
+func (Status) EnumDescriptor() ([]byte, []int) {
+	return file_pkg_user_proto_user_service_proto_rawDescGZIP(), []int{0}
+}
+
 type CreateUserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -156,6 +202,192 @@ func (x *CreateUserResponse) GetErr() string {
 	return ""
 }
 
+type LivenessRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *LivenessRequest) Reset() {
+	*x = LivenessRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_user_proto_user_service_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LivenessRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LivenessRequest) ProtoMessage() {}
+
+func (x *LivenessRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_user_proto_user_service_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LivenessRequest.ProtoReflect.Descriptor instead.
+func (*LivenessRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_user_proto_user_service_proto_rawDescGZIP(), []int{2}
+}
+
+type LivenessResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status  Status `protobuf:"varint,1,opt,name=status,proto3,enum=pkg.user.proto.Status" json:"status,omitempty"`
+	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	Commit  string `protobuf:"bytes,3,opt,name=commit,proto3" json:"commit,omitempty"`
+}
+
+func (x *LivenessResponse) Reset() {
+	*x = LivenessResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_user_proto_user_service_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LivenessResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LivenessResponse) ProtoMessage() {}
+
+func (x *LivenessResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_user_proto_user_service_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LivenessResponse.ProtoReflect.Descriptor instead.
+func (*LivenessResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_user_proto_user_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *LivenessResponse) GetStatus() Status {
+	if x != nil {
+		return x.Status
+	}
+	return Status_UP
+}
+
+func (x *LivenessResponse) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+func (x *LivenessResponse) GetCommit() string {
+	if x != nil {
+		return x.Commit
+	}
+	return ""
+}
+
+type ReadinessRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ReadinessRequest) Reset() {
+	*x = ReadinessRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_user_proto_user_service_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReadinessRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReadinessRequest) ProtoMessage() {}
+
+func (x *ReadinessRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_user_proto_user_service_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReadinessRequest.ProtoReflect.Descriptor instead.
+func (*ReadinessRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_user_proto_user_service_proto_rawDescGZIP(), []int{4}
+}
+
+type ReadinessResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status Status `protobuf:"varint,1,opt,name=status,proto3,enum=pkg.user.proto.Status" json:"status,omitempty"`
+}
+
+func (x *ReadinessResponse) Reset() {
+	*x = ReadinessResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_user_proto_user_service_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReadinessResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReadinessResponse) ProtoMessage() {}
+
+func (x *ReadinessResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_user_proto_user_service_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReadinessResponse.ProtoReflect.Descriptor instead.
+func (*ReadinessResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_user_proto_user_service_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ReadinessResponse) GetStatus() Status {
+	if x != nil {
+		return x.Status
+	}
+	return Status_UP
+}
+
 var File_pkg_user_proto_user_service_proto protoreflect.FileDescriptor
 
 var file_pkg_user_proto_user_service_proto_rawDesc = []byte{
@@ -179,12 +411,38 @@ var file_pkg_user_proto_user_service_proto_rawDesc = []byte{
 	0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
 	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12,
 	0x10, 0x0a, 0x03, 0x65, 0x72, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x65, 0x72,
-	0x72, 0x32, 0x62, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x12, 0x53, 0x0a, 0x0a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x12, 0x21,
-	0x2e, 0x70, 0x6b, 0x67, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
-	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x22, 0x2e, 0x70, 0x6b, 0x67, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73,
+	0x72, 0x22, 0x11, 0x0a, 0x0f, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x22, 0x74, 0x0a, 0x10, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x70, 0x6b, 0x67, 0x2e, 0x75,
+	0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73,
+	0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69,
+	0x6f, 0x6e, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x22, 0x12, 0x0a, 0x10, 0x52, 0x65,
+	0x61, 0x64, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x43,
+	0x0a, 0x11, 0x52, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x70, 0x6b, 0x67, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x2a, 0x1a, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a,
+	0x02, 0x55, 0x50, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04, 0x44, 0x4f, 0x57, 0x4e, 0x10, 0x01, 0x32,
+	0x83, 0x02, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x53, 0x0a, 0x0a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x12, 0x21, 0x2e,
+	0x70, 0x6b, 0x67, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x22, 0x2e, 0x70, 0x6b, 0x67, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x08, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73,
+	0x12, 0x1f, 0x2e, 0x70, 0x6b, 0x67, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x20, 0x2e, 0x70, 0x6b, 0x67, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2e, 0x4c, 0x69, 0x76, 0x65, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x09, 0x52, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x65, 0x73, 0x73,
+	0x12, 0x20, 0x2e, 0x70, 0x6b, 0x67, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x52, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x21, 0x2e, 0x70, 0x6b, 0x67, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x2e, 0x52, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x52, 0x65, 0x73,
 	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x2a, 0x5a, 0x28, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
 	0x63, 0x6f, 0x6d, 0x2f, 0x62, 0x69, 0x62, 0x61, 0x72, 0x6f, 0x63, 0x2f, 0x64, 0x79, 0x73, 0x6c,
 	0x61, 0x76, 0x2f, 0x70, 0x6b, 0x67, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2f, 0x70, 0x72, 0x6f, 0x74,
@@ -203,19 +461,31 @@ func file_pkg_user_proto_user_service_proto_rawDescGZIP() []byte {
 	return file_pkg_user_proto_user_service_proto_rawDescData
 }
 
-var file_pkg_user_proto_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_pkg_user_proto_user_service_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_pkg_user_proto_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_pkg_user_proto_user_service_proto_goTypes = []interface{}{
-	(*CreateUserRequest)(nil),  // 0: pkg.user.proto.CreateUserRequest
-	(*CreateUserResponse)(nil), // 1: pkg.user.proto.CreateUserResponse
+	(Status)(0),                // 0: pkg.user.proto.Status
+	(*CreateUserRequest)(nil),  // 1: pkg.user.proto.CreateUserRequest
+	(*CreateUserResponse)(nil), // 2: pkg.user.proto.CreateUserResponse
+	(*LivenessRequest)(nil),    // 3: pkg.user.proto.LivenessRequest
+	(*LivenessResponse)(nil),   // 4: pkg.user.proto.LivenessResponse
+	(*ReadinessRequest)(nil),   // 5: pkg.user.proto.ReadinessRequest
+	(*ReadinessResponse)(nil),  // 6: pkg.user.proto.ReadinessResponse
 }
 var file_pkg_user_proto_user_service_proto_depIdxs = []int32{
-	0, // 0: pkg.user.proto.UserService.CreateUser:input_type -> pkg.user.proto.CreateUserRequest
-	1, // 1: pkg.user.proto.UserService.CreateUser:output_type -> pkg.user.proto.CreateUserResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: pkg.user.proto.LivenessResponse.status:type_name -> pkg.user.proto.Status
+	0, // 1: pkg.user.proto.ReadinessResponse.status:type_name -> pkg.user.proto.Status
+	1, // 2: pkg.user.proto.UserService.CreateUser:input_type -> pkg.user.proto.CreateUserRequest
+	3, // 3: pkg.user.proto.UserService.Liveness:input_type -> pkg.user.proto.LivenessRequest
+	5, // 4: pkg.user.proto.UserService.Readiness:input_type -> pkg.user.proto.ReadinessRequest
+	2, // 5: pkg.user.proto.UserService.CreateUser:output_type -> pkg.user.proto.CreateUserResponse
+	4, // 6: pkg.user.proto.UserService.Liveness:output_type -> pkg.user.proto.LivenessResponse
+	6, // 7: pkg.user.proto.UserService.Readiness:output_type -> pkg.user.proto.ReadinessResponse
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_pkg_user_proto_user_service_proto_init() }
@@ -248,19 +518,68 @@ func file_pkg_user_proto_user_service_proto_init() {
 				return nil
 			}
 		}
+		file_pkg_user_proto_user_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LivenessRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_user_proto_user_service_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LivenessResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_user_proto_user_service_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReadinessRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_user_proto_user_service_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReadinessResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pkg_user_proto_user_service_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   2,
+			NumEnums:      1,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_pkg_user_proto_user_service_proto_goTypes,
 		DependencyIndexes: file_pkg_user_proto_user_service_proto_depIdxs,
+		EnumInfos:         file_pkg_user_proto_user_service_proto_enumTypes,
 		MessageInfos:      file_pkg_user_proto_user_service_proto_msgTypes,
 	}.Build()
 	File_pkg_user_proto_user_service_proto = out.File
@@ -282,6 +601,8 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type UserServiceClient interface {
 	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
+	Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error)
+	Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error)
 }
 
 type userServiceClient struct {
@@ -301,9 +622,29 @@ func (c *userServiceClient) CreateUser(ctx context.Context, in *CreateUserReques
 	return out, nil
 }
 
+func (c *userServiceClient) Liveness(ctx context.Context, in *LivenessRequest, opts ...grpc.CallOption) (*LivenessResponse, error) {
+	out := new(LivenessResponse)
+	err := c.cc.Invoke(ctx, "/pkg.user.proto.UserService/Liveness", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) Readiness(ctx context.Context, in *ReadinessRequest, opts ...grpc.CallOption) (*ReadinessResponse, error) {
+	out := new(ReadinessResponse)
+	err := c.cc.Invoke(ctx, "/pkg.user.proto.UserService/Readiness", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 type UserServiceServer interface {
 	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
+	Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error)
+	Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error)
 }
 
 // UnimplementedUserServiceServer can be embedded to have forward compatible implementations.
@@ -312,6 +653,12 @@ type UnimplementedUserServiceServer struct {
 
 func (*UnimplementedUserServiceServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+}
+func (*UnimplementedUserServiceServer) Liveness(context.Context, *LivenessRequest) (*LivenessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
+}
+func (*UnimplementedUserServiceServer) Readiness(context.Context, *ReadinessRequest) (*ReadinessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
 }
 
 func RegisterUserServiceServer(s *grpc.Server, srv UserServiceServer) {
@@ -336,6 +683,42 @@ func _UserService_CreateUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LivenessRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).Liveness(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pkg.user.proto.UserService/Liveness",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).Liveness(ctx, req.(*LivenessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadinessRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).Readiness(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pkg.user.proto.UserService/Readiness",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).Readiness(ctx, req.(*ReadinessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _UserService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pkg.user.proto.UserService",
 	HandlerType: (*UserServiceServer)(nil),
@@ -343,6 +726,14 @@ var _UserService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateUser",
 			Handler:    _UserService_CreateUser_Handler,
+		},
+		{
+			MethodName: "Liveness",
+			Handler:    _UserService_Liveness_Handler,
+		},
+		{
+			MethodName: "Readiness",
+			Handler:    _UserService_Readiness_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

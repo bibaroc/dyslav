@@ -2,6 +2,8 @@ GO_ENV ?= CGO_ENABLED=0
 
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
+VERSION ?= dev
+
 .PHONY: bin
 
 tools:
@@ -26,7 +28,7 @@ regen:
 			--validate_out=lang=go,paths=source_relative:. \
 			$${PROTO}; \
 	done;
-	@buf check lint || :;
+	@# buf check lint || :;
 	@wire gen ./...
 
 bin/%:
@@ -34,7 +36,7 @@ bin/%:
 		&& $(GO_ENV) go build \
 			-trimpath \
 			-gcflags='-e -l' \
-			-ldflags='-w -s -extldflags "-static" -X main.version=${VERSION} -X main.commit=${COMMIT}' \
+			-ldflags='-w -s -extldflags "-static" -X github.com/bibaroc/dyslav/pkg.Version=${VERSION} -X github.com/bibaroc/dyslav/pkg.Commit=$(shell git rev-parse --short HEAD)' \
 			-o $@ \
 			./cmd/$(shell basename $@)
 bin:
